@@ -1,0 +1,6 @@
+[submodule "beeldbank"]
+	path = beeldbank
+	url = https://github.com/OnroerendErfgoed/beeldbank.git
+[submodule "storageprovider"]
+	path = storageprovider
+	url = https://github.com/OnroerendErfgoed/storageprovider.git

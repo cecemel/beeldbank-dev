@@ -1,0 +1,35 @@
+version: "2"
+services:
+  elastic:
+    image: geosolutions/elasticsearch-plugins
+    ports:
+      - "9200:9200"
+    volumes:
+      - ./data/elastic:/usr/share/elasticsearch/data
+  postgres:
+    image: beeldbank-dev/postgres:latest
+    environment:
+      - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_USER=postgres"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  storageprovider:
+    image: beeldbank-dev/storageprovider:latest
+    ports:
+      - "6544:6544"
+    volumes:
+      - ./data/storageprovider:/beeldbank_store
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  beeldbankbeheer:
+    image: beeldbank-dev/beeldbankbeheer:latest
+    volumes:
+        - ./beeldbank/beeldbankbeheer/development-private.ini:/app/development-private.ini
+        - ./beeldbank/beeldbankbeheer/beeldbankbeheer:/app/beeldbankbeheer
+        - ./beeldbank/beeldbankbeheer/tests:/app/tests
+    ports:
+     - "6543:6543"

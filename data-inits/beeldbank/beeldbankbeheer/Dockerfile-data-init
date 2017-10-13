@@ -1,0 +1,4 @@
+FROM beeldbank-dev/beeldbankbeheer:latest
+
+WORKDIR "/app"
+CMD ["sh", "-c", "initialize_beeldbank_es development.ini#beeldbankbeheer"]
